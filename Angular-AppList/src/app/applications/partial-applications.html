@@ -1,0 +1,74 @@
+<h3 id="tables" class="page-header">Manage Applications</h3>
+<div class="bs-example">
+    <form ng-submit="submitForm()" name="appfrm" novalidate>
+        <div class="form-group">
+    <table class="table table-hover table-striped table-bordered ">
+        <thead>
+        <tr>
+            <td><strong>ID ^</strong></td>
+            <td><strong>Name</strong></td>
+            <td><strong>Action</strong></td>
+            <td><strong>New Owner</strong></td>
+            <td><strong>Reason</strong></td>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="application in applicationsCollection.data">
+            <td>{{ application.id }}</td>
+            <td>{{ application.name }}</td>
+            <td>
+                <div>
+                    <div class="btn-group" uib-dropdown is-open="status.isopen">
+                        <button id="single-button" type="button" class="btn btn-sm btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                            {{application.action}} <span class="caret"></span>
+                        </button>
+                        <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                            <li role="menuitem" ng-repeat="action in applicationsActions"><a ng-click="changeAction(action)">{{action}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+            <td><div ng-show="checkAction()" class="col-md-4"><input type="text" class="form-control" ng-model="application.owner" required></div></td>
+            <td><div ng-show="checkAction()" class="col-md-4"><input type="text" class="form-control" ng-model="application.reason" required></div></td>
+        </tr>
+
+        </tbody>
+    </table>
+        </div>
+            <div class="form-group">
+                <div>
+                    <div data-ng-show="showError" class="alert alert-danger"><strong>Error:</strong> {{errorMessage}}</div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+    </form>
+</div>
+
+<div class="bs-example" ng-show="applicationsSubmitted">
+    <h3>Your request has been submitted, details below</h3>
+
+    <table class="table table-hover table-striped table-bordered">
+        <thead>
+        <tr>
+            <td><strong>ID</strong></td>
+            <td><strong>Status</strong></td>
+            <td><strong>New Email ID</strong></td>
+            <td><strong>Reason/SR #</strong></td>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="records in applicationsReport">
+            <td>{{ records.id }}</td>
+            <td>{{ records.status }}</td>
+            <td>{{ records.owner }}</td>
+            <td>{{ records.sr }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>

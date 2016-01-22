@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+    <!-- JS (load angular, ui-router, and our custom js file) -->
+    <script type="text/javascript" src="src/vendor/angular/angular.min.js"></script>
+    <script type="text/javascript" src="src/vendor/angular/angular-animate.js"></script>
+    <script type="text/javascript" src="src/vendor/angular-ui/bootstrap/ui-bootstrap-tpls-1.1.0.min.js"></script>
+    <script type="text/javascript" src="src/vendor/angular-ui/router/ui-router.js"></script>
+
+
+    <!-- Bootstrapping -->
+    <!-- App Module -->
+    <script type="text/javascript" src="src/app/app.module.js"></script>
+
+    <!-- Core Module -->
+    <script type="text/javascript" src="src/app/core/core.module.js"></script>
+    <script type="text/javascript" src="src/app/core/route.config.js"></script>
+    <script type="text/javascript" src="src/app/core/data.service.js"></script>
+
+    <!-- Applications Module -->
+    <script type="text/javascript" src="src/app/applications/applications.module.js"></script>
+    <script type="text/javascript" src="src/app/applications/applications.controller.js"></script>
+
+    <!-- CSS (load bootstrap) -->
+    <link rel="stylesheet" type="text/css" href="src/vendor/bootstrap/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="src/vendor/bootstrap/css/bootstrap.css"/>
+    <style>
+        .navbar { border-radius:0; }
+    </style>
+
+</head>
+
+<!-- apply our angular app to our site -->
+<body ng-app="app">
+
+<!-- NAVIGATION -->
+<nav class="navbar" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="#">Brand</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="applications">Application</a></li>
+        <li><a ui-sref="history">History</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <div class="btn-group" uib-dropdown>
+            <button id="single-button" type="button" class="btn btn-link" uib-dropdown-toggle>
+                UserName&nbsp;<span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span>
+            </button>
+            <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                <li role="menuitem"><a href="#">Signout</a></li>
+            </ul>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+        </div>
+    </ul>
+</nav>
+
+<!-- MAIN CONTENT -->
+<!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+<div class="container-fluid left">
+    <div ui-view></div>
+</div>
+
+</body>
+</html>
+
+
+                
